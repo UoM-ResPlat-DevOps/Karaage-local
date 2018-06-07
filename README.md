@@ -19,16 +19,30 @@ By default, Karaage will search
 for settings and local files before searching its paths.
 
 ## Templates
-To override the default templates, place the replacement templates under
+To override the default templates, the local empty location:
 
 ```
 /opt/karaage/etc/Karaage3/templates
 ```
-using the same directory and file names as the original template.
 
-To maintain via this repository, the files under
+is mounted to the location of the git repository.
+
+For example, if the repository is cloned to:
 
 ```
-/opt/karaage/etc/Karaage3/templates
+/opt/karaage/
 ```
-are symbolically linked to the git versioned files.
+
+then
+
+```
+/etc/systemd/system/karaage.service
+```
+
+should include the lines:
+
+```
+  -v /opt/karaage/etc/karaage3:/etc/karaage3 \
+  -v /opt/karaage/Karaage-local/templates:/etc/karaage3/templates \
+```
+NOTE the order is important.
