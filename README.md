@@ -54,15 +54,41 @@ Static files are aliased in the web-server settings (apache2 or httpd) to:
 /opt/karaage/lib/karaage3/static
 ```
 
-To include local static files, use symbolic links to the version controlled location.
+To include local static files, need to modify 
+
+```
+/etc/apache2/sites-available/default-ssl.conf
+```
+
+To redirect to git controlled css. Need to add redirect to:
+
+```
+/kgstatic/css/local
+```
+
+before the default `kgstatic` redirect.
 
 For instance:
 
 ```
-ln -s /opt/karaage/Karaage-local/static/css /opt/karaage/lib/karaage3/static/css/local
+Alias /kgstatic/css/local "/opt/karaage/Karaage-local/static/css"
+<Location "/kgstatic/css/local">
+  SetHandler None
+  <IfVersion >= 2.4>
+  Require all granted
+  </IfVersion>
+</Location>
 ```
 
-NOTE: The use of `css/local` is to avoid linking to an existing directory and that may contains files.  The templates will need to include the `local` directory
+Before
+
+```
+Alias /kgstatic "/opt/karaage/lib/karaage3/static"
+<Location "/kgstatic">
+...
+```
+
+NOTE: The use of `css/local` is to allow the use of two locations with css files.  The templates will need to include the `local` directory
 
 ```
 kgstatic/css/local/
