@@ -46,3 +46,24 @@ should include the lines:
   -v /opt/karaage/Karaage-local/templates:/etc/karaage3/templates \
 ```
 NOTE the order is important.
+
+## Static files
+Static files are aliased in the web-server settings (apache2 or httpd) to:
+
+```
+/opt/karaage/lib/karaage3/static
+```
+
+To include local static files, use symbolic links to the version controlled location.
+
+For instance:
+
+```
+ln -s /opt/karaage/Karaage-local/static/css /opt/karaage/lib/karaage3/static/css/local
+```
+
+NOTE: The use of `css/local` is to avoid linking to an existing directory and that may contains files.  The templates will need to include the `local` directory
+
+```
+kgstatic/css/local/
+```
