@@ -221,3 +221,13 @@ div.breadcrumbs {
 .uomcontent ul.messagelist li {
 	list-style-type: none;	
 }
+
+
+/*===================================
+* Style fix for applications
+*====================================*/
+
+li.selected {
+    font-weight: bold;
+}
+
