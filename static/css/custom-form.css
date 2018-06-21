@@ -56,8 +56,18 @@ div#login-form {margin: auto;}
 	margin: 1.5rem 0;
 }
 
-.uomcontent form:not(.unstyled-controls) fieldset input[type=radio]:not(.unstyled) {
+.uomcontent form:not(.unstyled-controls) fieldset input[type=radio]:not(.unstyled), .uomcontent form:not(.unstyled-controls) fieldset input[type=checkbox]:not(.unstyled) {
 	position: relative!important;
+}
+
+.uomcontent form:not(.unstyled-controls) fieldset input[type=radio]:not(.unstyled)+label, .uomcontent form:not(.unstyled-controls) fieldset input[type=checkbox]:not(.unstyled)+label {
+	display: inline-block;
+	padding-top: 0;
+	width: 80%;
+}
+
+.uomcontent form:not(.unstyled-controls) fieldset input[type=checkbox]:not(.unstyled)+label:after {
+	display: none;
 }
 
 .aligned input + label {
